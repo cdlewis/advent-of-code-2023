@@ -4,8 +4,6 @@ import scala.io.Source
 import scala.util.Using
 import AOC.Reader
 
-val digitChars = Array('1', '2', '3', '4', '5', '6', '7', '8', '9', '0')
-
 val digitMapping = Map[String, Int](
     "one" -> 1,
     "two" -> 2,
@@ -23,8 +21,13 @@ object Day1 {
         val findDigit: PartialFunction[String, Int] = {
             case token if token.nonEmpty && token(0).isDigit => token(0).asDigit
         }
-        val findEnglishNumber: PartialFunction[String, Int] = ((token: String) =>
-            digitMapping.find((digit, _) => token.startsWith(digit)).map(_._2)).unlift
+        val findEnglishNumber: PartialFunction[String, Int] = (
+            (token: String) =>
+                digitMapping
+                    .find((digit, _) => token.startsWith(digit))
+                    .map(_._2) // grab the value for the found key
+            )
+            .unlift // convert to partial function
         val findAnyNumber = findDigit.orElse(findEnglishNumber)
 
         Reader
