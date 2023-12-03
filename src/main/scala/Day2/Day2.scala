@@ -1,7 +1,5 @@
 package Day2
 
-import scala.io.Source
-import scala.util.Using
 import AOC.Reader
 
 object Day2 {

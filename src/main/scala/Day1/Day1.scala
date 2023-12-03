@@ -1,7 +1,5 @@
 package Day1
 
-import scala.io.Source
-import scala.util.Using
 import AOC.Reader
 
 val digitMapping = Map[String, Int](

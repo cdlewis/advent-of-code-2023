@@ -1,29 +1,23 @@
 package Day3
 
-import scala.io.Source
-import scala.util.Using
 import AOC.Reader
+import AOC.Point
 
 object Day3 {
-    private val directions = Seq((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (-1, 1), (1, -1)).map(Point.apply)
 
-    case class Point(x: Int, y: Int) {
-        def +(anotherPoint: Point): Point = this.copy(x = this.x + anotherPoint.x, y = this.y + anotherPoint.y)
-    }
-
+    @main
     def solve(): Int = {
         val matrix = Reader
             .Read("day3_test")
             .split("\n")
             .map(_.toSeq)
+            .zipWithIndex
+            .map((line, y) => (line.zipWithIndex, y))
 
         // Create a map of Point -> (Part Number, Number Start Point)
         val enginePartMap = matrix
-            .zipWithIndex
-            .map { (line, y) =>
+            .map { case (line, y) =>
                 line
-                    .toSeq
-                    .zipWithIndex
                     .foldLeft((Seq[Seq[(Char, Point)]](), Seq[(Char, Point)]())) { case ((results, partialResult), (current, x)) =>
                         if (current.isDigit) (results, partialResult :+ (current, Point(x, y)))
                         else if (partialResult.nonEmpty) (results :+ partialResult, Seq[(Char, Point)]())
@@ -42,30 +36,29 @@ object Day3 {
             .flatten
             .toMap
 
+        // Create a list of all gear positions
         val gears = matrix
-            .zipWithIndex
             .map { (line, y) =>
-                line.zipWithIndex.map { (char, x) =>
-                    if (char == '*') {
-                        Some(Point(x, y))
-                    } else {
-                        None
-                    }
+                line.collect {
+                    case (char, x) if char == '*' => Point(x, y)
                 }
             }
             .flatten
 
-        gears
-            .flatten.map { gearPosition =>
-                directions
+        // Check which gear positions are adjacent to exactly two parts, compute their gear ratios
+        val gearRatios = gears
+            .map { gearPosition =>
+                Point.directions
                     .map(direction => enginePartMap.get(gearPosition + direction))
                     .flatten
-                    .toSet
+                    .toSet // dedupe references to the same value (leveraging our tracking of the start coordinates)
             }
             .map { nearbyGears =>
                 if (nearbyGears.size == 2) nearbyGears.map(_._2).product
                 else 0
             }
-            .sum
+
+        // Sum the gear ratios to compute the final result
+        gearRatios.sum
     }
 }
