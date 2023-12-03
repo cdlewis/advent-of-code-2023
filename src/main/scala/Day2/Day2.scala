@@ -4,8 +4,6 @@ import scala.io.Source
 import scala.util.Using
 import AOC.Reader
 
-case class Colours(red: Int, green: Int, blue: Int)
-
 object Day2 {
     def solve(): Int = {
         val re = """(([0-9]+) (red|green|blue))""".r
