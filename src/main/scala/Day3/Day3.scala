@@ -29,9 +29,8 @@ object Day3 {
                 else results
             }
             .map { partialResult =>
-                    val number = partialResult.map(_._1).mkString.toInt
-                    val root = partialResult(0)(1)
-                    partialResult.map((_, point) => point -> (root, number))
+                val number = partialResult.map(_._1).mkString.toInt
+                partialResult.map((_, point) => point -> (partialResult.head._2, number))
             }
             .flatten
             .toMap
