@@ -17,12 +17,11 @@ object Day3 {
         // Create a map of Point -> (Part Number, Number Start Point)
         val enginePartMap = matrix
             .map { case (line, y) =>
-                line
-                    .foldLeft((Seq[Seq[(Char, Point)]](), Seq[(Char, Point)]())) { case ((results, partialResult), (current, x)) =>
-                        if (current.isDigit) (results, partialResult :+ (current, Point(x, y)))
-                        else if (partialResult.nonEmpty) (results :+ partialResult, Seq[(Char, Point)]())
-                        else (results, partialResult)
-                    }
+                line.foldLeft((Seq[Seq[(Char, Point)]](), Seq[(Char, Point)]())) { case ((results, partialResult), (current, x)) =>
+                    if (current.isDigit) (results, partialResult :+ (current, Point(x, y)))
+                    else if (partialResult.nonEmpty) (results :+ partialResult, Seq[(Char, Point)]())
+                    else (results, partialResult)
+                }
             }
             .flatMap { (results, remainder) =>
                 if (remainder.nonEmpty) results :+ remainder
