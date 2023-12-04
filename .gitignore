@@ -5,3 +5,4 @@ project
 .bloop
 .metals
 .vscode
+.scalafmt.conf
