@@ -5,7 +5,6 @@ import AOC.Point
 
 object Day3 {
 
-    @main
     def solve(): Int = {
         val matrix = Reader
             .Read("day3_test")

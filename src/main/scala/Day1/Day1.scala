@@ -15,7 +15,7 @@ val digitMapping = Map[String, Int](
 )
 
 object Day1 {
-    def Solve(): Int = {
+    def solve(): Int = {
         val findDigit: PartialFunction[String, Int] = {
             case token if token.nonEmpty && token(0).isDigit => token(0).asDigit
         }

@@ -4,8 +4,7 @@ import AOC.Reader
 import AOC.MapHelpers
 
 object Day4 {
-  @main
-  def Solve(): Int = {
+  def solve(): Int = {
     val cards = Reader
       .Read("day4_test")
       .split("\n")
