@@ -4,7 +4,6 @@ import AOC.Reader
 import AOC.SeqHelpers
 
 object Day6 {
-    @main
     def solve(): BigInt = {
         val (raceTime, recordDistance) = Reader
             .Read("day6_test")
