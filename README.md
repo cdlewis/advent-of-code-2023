@@ -8,3 +8,4 @@
 | 4    | ⭐⭐          | [Day4.scala](https://github.com/cdlewis/advent-of-code-2023/blob/main/src/main/scala/Day4/Day4.scala) |
 | 5    | ⭐⭐          | [Day5.scala](https://github.com/cdlewis/advent-of-code-2023/blob/main/src/main/scala/Day5/Day5.scala) |
 | 6    | ⭐⭐          | [Day6.scala](https://github.com/cdlewis/advent-of-code-2023/blob/main/src/main/scala/Day6/Day6.scala) |
+| 7    | ⭐⭐          | [Day7.scala](https://github.com/cdlewis/advent-of-code-2023/blob/main/src/main/scala/Day7/Day7.scala) |
