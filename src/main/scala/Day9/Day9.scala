@@ -5,7 +5,6 @@ import AOC.ArrayHelpers
 
 object Day9 {
 
-    @main
     def solve(): Int = {
         val sensorReadings = Reader.Read("day9_test").linesIterator.map(_.split(' ').map(_.toInt))
 
@@ -20,9 +19,10 @@ object Day9 {
                 .takeWhile(_.exists(_ != 0))
 
             // work backwards up the arrays of differences calculating the extrapolated head element as we go
-            adjacentNumberDifferences.toArray
-            .reverseIterator
-            .foldLeft(0) { case (result, currentRow) => currentRow.head - result }
+            adjacentNumberDifferences
+                .toArray
+                .reverseIterator
+                .foldLeft(0) { case (result, currentRow) => currentRow.head - result }
         }
 
         // Sum the extrapolated readings to find our solution
