@@ -27,4 +27,5 @@ object Day9 {
         // Sum the extrapolated readings to find our solution
         extrapolatedSensorValues.sum
     }
+
 }
